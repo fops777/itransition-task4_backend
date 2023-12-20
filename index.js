@@ -5,14 +5,14 @@ import { registerValidation } from "./validations/auth.js";
 import { validationResult } from "express-validator";
 import cors from "cors";
 import UserModel from "./models/UserModel.js";
-import checkAuth from "./utils/checkAuth.js";
+// import checkAuth from "./utils/checkAuth.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const URI = process.env.MONGODB_URI;
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(URI)
   .then(() => console.log("DB - OK"))
   .catch((err) => console.log(err));
 
@@ -97,28 +97,28 @@ app.post("/register", registerValidation, async (req, res) => {
   }
 });
 
-app.get("/me", checkAuth, async (req, res) => {
-  try {
-    const user = await UserModel.findById(req.userId);
+// app.get("/me", checkAuth, async (req, res) => {
+//   try {
+//     const user = await UserModel.findById(req.userId);
 
-    if (!user) {
-      return res.status(404).json({
-        message: "Пользователь не найден",
-      });
-    }
+//     if (!user) {
+//       return res.status(404).json({
+//         message: "Пользователь не найден",
+//       });
+//     }
 
-    // const { ...userData } = user._doc;
-    // res.json(userData);
+//     // const { ...userData } = user._doc;
+//     // res.json(userData);
 
-    // res.json(user._doc);
-    res.json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "Не удалось зарегать юзера",
-    });
-  }
-});
+//     // res.json(user._doc);
+//     res.json(user);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({
+//       message: "Не удалось зарегать юзера",
+//     });
+//   }
+// });
 
 app.get("/users", async (req, res) => {
   try {
