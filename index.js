@@ -121,16 +121,15 @@ app.get("/me", checkAuth, async (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-  res.json("hii");
-  // try {
-  //   const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
-  //   res.json(users);
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).json({
-  //     message: "Не удалось получить юзеров",
-  //   });
-  // }
+  try {
+    const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Не удалось получить юзеров",
+    });
+  }
 });
 
 app.delete("/users", async (req, res) => {
