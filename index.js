@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const URI = process.env.MONGODB_URI;
+// console.log(URI);
 
 mongoose
   .connect(URI)
@@ -123,7 +124,7 @@ app.post("/register", registerValidation, async (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
-    res.json(users);
+    res.json("hii cutiee");
   } catch (error) {
     console.log(error);
     res.status(500).json({
