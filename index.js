@@ -54,8 +54,6 @@ app.post("/login", async (req, res) => {
       });
     }
 
-    // const token = jwt.sign({ _id: user._id }, "secret", { expiresIn: "30d" });
-
     res.json({
       ...user._doc,
       // token,
@@ -86,8 +84,6 @@ app.post("/register", registerValidation, async (req, res) => {
     });
 
     const user = await doc.save();
-
-    // const token = jwt.sign({ _id: user._id }, "secret", { expiresIn: "30d" });
 
     res.json({
       ...user._doc,
