@@ -180,7 +180,7 @@ app.patch("/unlock", async (req, res) => {
   }
 });
 
-app.listen("4444", (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     console.log(err);
   }
