@@ -6,11 +6,13 @@ import { validationResult } from "express-validator";
 import cors from "cors";
 import UserModel from "./models/UserModel.js";
 import checkAuth from "./utils/checkAuth.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:admin@cluster0.f3kaekt.mongodb.net/users?retryWrites=true&w=majority"
-  )
+  .connect(MONGODB_URI)
   .then(() => console.log("DB - OK"))
   .catch((err) => console.log(err));
 
