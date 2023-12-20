@@ -122,15 +122,16 @@ app.post("/register", registerValidation, async (req, res) => {
 // });
 
 app.get("/users", async (req, res) => {
-  try {
-    const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
-    res.json("hii cutiee");
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "Не удалось получить юзеров",
-    });
-  }
+  res.json("hii cutiee");
+  // try {
+  //   const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
+
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).json({
+  //     message: "Не удалось получить юзеров",
+  //   });
+  // }
 });
 
 app.delete("/users", async (req, res) => {
