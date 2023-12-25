@@ -1,11 +1,9 @@
 import express from "express";
-// import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import { registerValidation } from "./validations/auth.js";
 import { validationResult } from "express-validator";
 import cors from "cors";
 import UserModel from "./models/UserModel.js";
-// import checkAuth from "./utils/checkAuth.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -122,16 +120,16 @@ app.post("/register", registerValidation, async (req, res) => {
 // });
 
 app.get("/users", async (req, res) => {
-  // res.json("heey");
-  try {
-    const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
-    res.json(users);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "Не удалось получить юзеров",
-    });
-  }
+  res.json("heey");
+  // try {
+  //   const users = await UserModel.find(); // Используем метод find для получения всех пользователей из базы данных
+  //   res.json(users);
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).json({
+  //     message: "Не удалось получить юзеров",
+  //   });
+  // }
 });
 
 app.delete("/users", async (req, res) => {
