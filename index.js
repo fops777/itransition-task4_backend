@@ -8,16 +8,21 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const URI = process.env.MONGODB_URI;
-// console.log(URI);
+
+const app = express();
+app.use(cors()); // Разрешает бэкенду получать запросы откуда угодно
+app.use(express.json());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // Разрешить доступ со всех испочников
+  res.header("Access-Control-Allow-Methods", "*"); // Разрешенные методы запросов (все)
+  res.header("Access-Control-Allow-Headers", "*"); // (или Content-Type) Разрешенные заголовки
+  next();
+});
 
 mongoose
   .connect(URI)
   .then(() => console.log("DB - OK"))
   .catch((err) => console.log(err));
-
-const app = express();
-app.use(cors()); // Разрешает бэкенду получать запросы откуда угодно
-app.use(express.json());
 
 app.post("/login", async (req, res) => {
   try {
